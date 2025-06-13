@@ -1,23 +1,26 @@
 package com.techtians.socialmediaapp.entities;
 
+import java.util.Arrays;
+
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
 @Entity
 public class User {
 	@Id
-	private int userId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long userId;
 	private String name;
 	private String email;
 	private String password;
-	@Lob
-	private byte[] profilePic;
-	private String bio;
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getName() {
@@ -38,17 +41,20 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public byte[] getProfilePic() {
-		return profilePic;
+	public User(Long userId, String name, String email, String password) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
 	}
-	public void setProfilePic(byte[] profilePic) {
-		this.profilePic = profilePic;
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public String getBio() {
-		return bio;
-	}
-	public void setBio(String bio) {
-		this.bio = bio;
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
 	
 }
